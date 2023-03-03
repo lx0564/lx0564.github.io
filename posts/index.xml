@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on My New Hugo Site</title>
+    <title>Posts on Alchemy</title>
     <link>https://lx0564.github.io/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <description>Recent content in Posts on Alchemy</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 02 Mar 2023 18:07:21 +0800</lastBuildDate><atom:link href="https://lx0564.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 03 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lx0564.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>https://lx0564.github.io/posts/test/</link>
-      <pubDate>Thu, 02 Mar 2023 18:07:21 +0800</pubDate>
+      <title>股票的投机与投资</title>
+      <link>https://lx0564.github.io/posts/%E8%82%A1%E7%A5%A8%E7%9A%84%E6%8A%95%E6%9C%BA%E4%B8%8E%E6%8A%95%E8%B5%84/</link>
+      <pubDate>Fri, 03 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://lx0564.github.io/posts/test/</guid>
-      <description>Hello Hugo aaa bbb ccc </description>
+      <guid>https://lx0564.github.io/posts/%E8%82%A1%E7%A5%A8%E7%9A%84%E6%8A%95%E6%9C%BA%E4%B8%8E%E6%8A%95%E8%B5%84/</guid>
+      <description>投机和投资 我们常说的炒股，其实理解也是不一样的，但凡是叫作炒作的，就跟我们炒菜一样来回快速翻炒一样，买卖交易速度很快，也就是高频交易，这个就叫炒。但是如果你看好一个公司的股票，买了之后基本不太动，长期持有这个叫投资。炒作一般来说都是投机主义，所以分清楚你是用股票去投机，还是用股票去投机，这点很重要。
+如何进行股票投资 作为一个上班族，能不能炒股这个一直是比较热的话题。其实上班族大多都有炒股这个想法，但是你有这个想法和炒得好不好是两个概念。
+我的个人看法是，由于你有工作要做，你要是频繁交易那肯定是影响你现在的工作，二者不可兼得。如果你是炒股，那么对于你来说，什么时候有行情，什么时候有变化，你得随时盯着，上班工作效率肯定是下降的，但是从更广的角度来说，上班族持有股票我认为是可以的，高频交易不行，但长期持有没问题。
+这里不是说随便买一只股票长期持有，而是你做好了研究，并且是你了解的股票长期持有。
+那上班族如何选股呢？买什么股票好呢？既然上班族无法进行高频交易，那么你对股票的研究肯定是比不过专业团队的，真要搞还不如买个基金，但是基金也得挑，遇到个坑的团队也难受。
+如果不投资房产和黄金，主要就是投资股票的话，我的建议就是买你所从事的行业相关的股票，为什么呢？因为这样可以发挥你的优势，你所从事的行业哪个公司好？哪个公司不好？哪个公司挣的钱多？日常工作生活中你肯定是有一定了解的。甚至都不用去看他复杂的年报你大概率心中就有谱，是不是这个理。
+都说投资只能赚认知范围内的钱，这个应该是我们认知范围内的吧，而且也是相对符合我们普通上班族的价值投资方式，何必舍近求远去做超出自己认知的东西呢？当然我说的也不一定对，理性甄别即可。
+当然你要说你干的行业不行了，如果你不是开玩笑的话，那你面临的问题不是上班族要不要炒股的问题了，当务之急难道不是更应该考虑转型的问题吗？主要矛盾和次要矛盾得拎清楚啊。
+总结 根据自己当前情况、从事的行业等找到符合自己认知范围内的投资方式。</description>
     </item>
     
   </channel>
