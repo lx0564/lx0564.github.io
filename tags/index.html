@@ -25,10 +25,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html
   class="not-ready text-sm lg:text-base"
   style="--bg: #faf6f1"
-  lang="zh-CN"
+  lang="en"
 >
   <head>
   <meta charset="utf-8" />
@@ -52,7 +66,7 @@
     name="description"
     content="A personal blog"
   />
-  <meta name="author" content="Alchemy" />
+  <meta name="author" content="君亦信" />
   
 
   
@@ -72,8 +86,16 @@
   
   
   
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/8b3dbc774451be94d9e75fc46f3954f9?s=160&amp;d=identicon" />
+  
   
 
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/twitter.svg" />
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/github.svg" />
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/instagram.svg" />
   
 
   
@@ -189,7 +211,59 @@
   >
     
     
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >About</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >Contact</a
+      >
+      
+    </nav>
+    
 
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/junmoxin"
+        target="_blank"
+        rel="me"
+      >
+        twitter
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lx0564"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./instagram.svg)"
+        href="https://instagram.com/junmoxin"
+        target="_blank"
+        rel="me"
+      >
+        instagram
+      </a>
+      
+    </nav>
     
   </div>
 </header>
@@ -223,7 +297,7 @@
 >
   <div class="mr-auto">
     &copy; 2023
-    <a class="link" href="https://lx0564.github.io">Alchemy</a>
+    <a class="link" href="https://lx0564.github.io/">Alchemy</a>
   </div>
   <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
     >Powered by Hugo️️</a
