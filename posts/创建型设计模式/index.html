@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready text-sm lg:text-base"
+  style="--bg: #faf6f1"
+  lang="en"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>创建型设计模式 - Alchemy</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="抽象工厂(Abstract Factory) 抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。
+示例：
+// 协议 protocol BurgerDescribing { var ingredients: [String] { get } } struct CheeseBurger: BurgerDescribing { let ingredients: [String] } protocol BurgerMaking { func make() -&gt; BurgerDescribing } // 工厂方法实现 final class BigKahunaBurger: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Lettuce&#34;, &#34;Tomato&#34;]) } } final class JackInBox: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Tomato&#34;, &#34;Onions&#34;]) } } // 抽象工厂 enum BurgerFactoryType: BurgerMaking { case bigKahuan case jackInBox func make() -&gt; BurgerDescribing { switch self { case ." />
+  <meta name="author" content="Alchemy" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://lx0564.github.io/main.min.css" />
+
+  
+  <script
+    defer
+    src="https://lx0564.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://lx0564.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/8b3dbc774451be94d9e75fc46f3954f9?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/twitter.svg" />
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/github.svg" />
+  
+  <link rel="preload" as="image" href="https://lx0564.github.io/instagram.svg" />
+  
+
+  
+  <link rel="icon" href="https://lx0564.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://lx0564.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.110.0">
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="创建型设计模式" />
+<meta property="og:description" content="抽象工厂(Abstract Factory) 抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。
+示例：
+// 协议 protocol BurgerDescribing { var ingredients: [String] { get } } struct CheeseBurger: BurgerDescribing { let ingredients: [String] } protocol BurgerMaking { func make() -&gt; BurgerDescribing } // 工厂方法实现 final class BigKahunaBurger: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Lettuce&#34;, &#34;Tomato&#34;]) } } final class JackInBox: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Tomato&#34;, &#34;Onions&#34;]) } } // 抽象工厂 enum BurgerFactoryType: BurgerMaking { case bigKahuan case jackInBox func make() -&gt; BurgerDescribing { switch self { case ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lx0564.github.io/posts/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-13T16:43:28+08:00" />
+<meta property="article:modified_time" content="2023-03-13T16:43:28+08:00" />
+
+  
+  <meta itemprop="name" content="创建型设计模式">
+<meta itemprop="description" content="抽象工厂(Abstract Factory) 抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。
+示例：
+// 协议 protocol BurgerDescribing { var ingredients: [String] { get } } struct CheeseBurger: BurgerDescribing { let ingredients: [String] } protocol BurgerMaking { func make() -&gt; BurgerDescribing } // 工厂方法实现 final class BigKahunaBurger: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Lettuce&#34;, &#34;Tomato&#34;]) } } final class JackInBox: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Tomato&#34;, &#34;Onions&#34;]) } } // 抽象工厂 enum BurgerFactoryType: BurgerMaking { case bigKahuan case jackInBox func make() -&gt; BurgerDescribing { switch self { case ."><meta itemprop="datePublished" content="2023-03-13T16:43:28+08:00" />
+<meta itemprop="dateModified" content="2023-03-13T16:43:28+08:00" />
+<meta itemprop="wordCount" content="512">
+<meta itemprop="keywords" content="Swift,设计模式," />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="创建型设计模式"/>
+<meta name="twitter:description" content="抽象工厂(Abstract Factory) 抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。
+示例：
+// 协议 protocol BurgerDescribing { var ingredients: [String] { get } } struct CheeseBurger: BurgerDescribing { let ingredients: [String] } protocol BurgerMaking { func make() -&gt; BurgerDescribing } // 工厂方法实现 final class BigKahunaBurger: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Lettuce&#34;, &#34;Tomato&#34;]) } } final class JackInBox: BurgerMaking { func make() -&gt; BurgerDescribing { return CheeseBurger(ingredients: [&#34;Cheese&#34;, &#34;Burger&#34;, &#34;Tomato&#34;, &#34;Onions&#34;]) } } // 抽象工厂 enum BurgerFactoryType: BurgerMaking { case bigKahuan case jackInBox func make() -&gt; BurgerDescribing { switch self { case ."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-0.5 text-3xl font-bold"
+      href="https://lx0564.github.io/"
+      >Alchemy</a
+    >
+    <div
+      class="btn-dark text-[0] ml-6 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = `"#faf6f1"`.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/about/"
+        >About</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/contact/"
+        >Contact</a
+      >
+      
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:mt-0 lg:ml-12 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./twitter.svg)"
+        href="https://twitter.com/junmoxin"
+        target="_blank"
+        rel="me"
+      >
+        twitter
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/lx0564"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./instagram.svg)"
+        href="https://instagram.com/junmoxin"
+        target="_blank"
+        rel="me"
+      >
+        instagram
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-10rem)] max-w-3xl px-8 pt-16 pb-24 dark:prose-invert"
+    >
+      
+
+<article>
+  <header class="mb-20">
+    <h1 class="!my-0 pb-2.5">创建型设计模式</h1>
+
+    
+    <div class="text-sm opacity-50">
+      
+      <time>Mar 13, 2023</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>Alchemy</span>
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="抽象工厂abstract-factory">抽象工厂(Abstract Factory)</h2>
+<p>抽象工厂模式提供了一种方式，可以将一组具有同一主题的单独的工厂封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象。</p>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">// 协议</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">BurgerDescribing</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> ingredients: [String] { <span style="color:#66d9ef">get</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">CheeseBurger</span>: BurgerDescribing {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> ingredients: [String]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">BurgerMaking</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">make</span>() -&gt; BurgerDescribing
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 工厂方法实现</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BigKahunaBurger</span>: BurgerMaking {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">make</span>() -&gt; BurgerDescribing {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> CheeseBurger(ingredients: [<span style="color:#e6db74">&#34;Cheese&#34;</span>, <span style="color:#e6db74">&#34;Burger&#34;</span>, <span style="color:#e6db74">&#34;Lettuce&#34;</span>, <span style="color:#e6db74">&#34;Tomato&#34;</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JackInBox</span>: BurgerMaking {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">make</span>() -&gt; BurgerDescribing {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> CheeseBurger(ingredients: [<span style="color:#e6db74">&#34;Cheese&#34;</span>, <span style="color:#e6db74">&#34;Burger&#34;</span>, <span style="color:#e6db74">&#34;Tomato&#34;</span>, <span style="color:#e6db74">&#34;Onions&#34;</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 抽象工厂</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">BurgerFactoryType</span>: BurgerMaking {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> bigKahuan
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> jackInBox
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">make</span>() -&gt; BurgerDescribing {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> <span style="color:#66d9ef">self</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> .bigKahuan:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> BigKahunaBurger().make()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> .jackInBox:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> JackInBox().make()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> bigKahuan = BurgerFactoryType.bigKahuan.make()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> jackInBox = BurgerFactoryType.jackInBox.make()
+</span></span></code></pre></div><h2 id="生成器builder">生成器(Builder)</h2>
+<p>一种对象构建模式。它可以将复杂的建造过程抽象出来(抽象类别)，使这个抽象过程的不同实现方法可以构造不同表现(属性)的对象。</p>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeathStarBuilder</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> x: Double?
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> y: Double?
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> z: Double?
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">typealias</span> BuilderClosure = (DeathStarBuilder) -&gt; ()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(builderClosure: BuilderClosure) {
+</span></span><span style="display:flex;"><span>        builderClosure(<span style="color:#66d9ef">self</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DeathStar</span>: CustomStringConvertible {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> x: Double
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> y: Double
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> z: Double
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>?(builder: DeathStarBuilder) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> x = builder.x, <span style="color:#66d9ef">let</span> y = builder.y, <span style="color:#66d9ef">let</span> z = builder.z {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">self</span>.x = x
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">self</span>.y = y
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">self</span>.z = z
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> description: String {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Death Star at (x: </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74"> y: </span><span style="color:#e6db74">\(</span>y<span style="color:#e6db74">)</span><span style="color:#e6db74"> z: </span><span style="color:#e6db74">\(</span>z<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> empire = DeathStarBuilder { builder <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>    builder.x = <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span>    builder.y = <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>    builder.z = <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> deathStar = DeathStar(builder: empire)
+</span></span></code></pre></div><h2 id="工厂方法factory-method">工厂方法(Factory Method)</h2>
+<p>定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">CurrencyDescribing</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> symbol: String { <span style="color:#66d9ef">get</span> }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> code: String { <span style="color:#66d9ef">get</span> }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Euro</span>: CurrencyDescribing {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> symbol: String {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;€&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> code: String {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;EUR&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UnitedStatesDolar</span>: CurrencyDescribing {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> symbol: String {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;$&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> code: String {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;USD&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Country</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> unitedStates
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> spain
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> uk
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> greece
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">CurrencyFactory</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">currency</span>(<span style="color:#66d9ef">for</span> country: Country) -&gt; CurrencyDescribing? {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> country {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> .spain, .greece:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Euro()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> .unitedStates:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> UnitedStatesDolar()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> noCurrencyCode = <span style="color:#e6db74">&#34;No Currency Code Available&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CurrencyFactory.currency(<span style="color:#66d9ef">for</span>: .greece)?.code ?? noCurrencyCode
+</span></span><span style="display:flex;"><span>CurrencyFactory.currency(<span style="color:#66d9ef">for</span>: .spain)?.code ?? noCurrencyCode
+</span></span><span style="display:flex;"><span>CurrencyFactory.currency(<span style="color:#66d9ef">for</span>: .unitedStates)?.code ?? noCurrencyCode
+</span></span><span style="display:flex;"><span>CurrencyFactory.currency(<span style="color:#66d9ef">for</span>: .uk)?.code ?? noCurrencyCode
+</span></span></code></pre></div><h2 id="单态monostate">单态(Monostate)</h2>
+<p>单态模式是实现单一共享的另一种方法。不同于单例模式，它通过完全不同的机制，在不限制构造方法的情况下实现单一共享特性。 因此，在这种情况下，单态会将状态保存为静态，而不是将整个实例保存为单例。</p>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Settings</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Theme</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> `<span style="color:#66d9ef">default</span>`
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> old
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> new
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> theme: Theme?
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> currentTheme: Theme {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">get</span> { Settings.theme ?? .<span style="color:#66d9ef">default</span> }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">set</span>(newTheme) { Settings.theme = newTheme }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">SwiftUI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 改变主题</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> settings = Settings() <span style="color:#75715e">// 开始使用主题 .old</span>
+</span></span><span style="display:flex;"><span>settings.currentTheme = .new <span style="color:#75715e">// 改变主题为 .new</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 界面一</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> screenColor: Color = Settings().currentTheme == .old ? .gray : .white
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 界面二</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> screenTitle: String = Settings().currentTheme == .old ? <span style="color:#e6db74">&#34;Itunes Connect&#34;</span> : <span style="color:#e6db74">&#34;App Store Connect&#34;</span>
+</span></span></code></pre></div><h2 id="原型prototype">原型(Prototype)</h2>
+<p>通过”复制“一个已经存在的实例来返回新的实例，而不是创建新的实例。被复制的实例就是我们所称的“原型”，这个原型是可定制的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MoonWorker</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> name: String
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> health: Int = <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(name: String) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.name = name
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">clone</span>() -&gt; MoonWorker {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> MoonWorker(name: name)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> prototype = MoonWorker(name: <span style="color:#e6db74">&#34;Bob&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> bob1 = prototype.clone()
+</span></span><span style="display:flex;"><span>bob1.health = <span style="color:#ae81ff">112</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> bob2 = prototype.clone()
+</span></span><span style="display:flex;"><span>bob2.health = <span style="color:#ae81ff">120</span>
+</span></span></code></pre></div><h2 id="单例singleton">单例(Singleton)</h2>
+<p>单例对象的类必须保证只有一个实例存在。许多时候整个系统只需要一个的全局对象，这样有利于我们协调协调的整体行为。</p>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ElonMusk</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> shared = ElonMusk()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">init</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 私有初始化以确保只创建一个实例</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 用法</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> elon = ElonMusk.shared
+</span></span></code></pre></div></section>
+
+  
+  
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="https://lx0564.github.io/tags/swift"
+      >Swift</a
+    >
+     
+    <a
+      class="mr-1.5 mb-1.5 rounded-lg bg-black/[3%] px-5 py-2 no-underline dark:bg-white/[8%]"
+      href="https://lx0564.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+      >设计模式</a
+    >
+    
+  </footer>
+  
+
+  
+  
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://lx0564.github.io/posts/swift%E5%88%9D%E8%A7%81/"
+      ><span>Swift初见</span><span class="ml-1.5">→</span></a
+    >
+    
+  </nav>
+  
+
+  
+  
+
+  
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-50"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://lx0564.github.io">Alchemy</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >Theme Paper</a
+  >
+</footer>
+
+  </body>
+</html>
